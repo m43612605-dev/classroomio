@@ -32,6 +32,8 @@ jobs:
         run: pnpm --filter @cio/api^... build && pnpm --filter @cio/api build
 
       - name: Build dashboard
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
         run: |
           test -f apps/dashboard/.env || cp apps/dashboard/.env.example apps/dashboard/.env
           pnpm --filter @cio/dashboard^... build && pnpm --filter @cio/dashboard build
