@@ -194,14 +194,9 @@
   <div class="ui:bg-background grid min-h-screen w-full grid-cols-1 lg:grid-cols-2">
     <div class="relative flex flex-col px-4 lg:px-12">
       <header class="flex justify-center pt-6 md:block">
-        <a
-          href="https://classroomio.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex w-fit items-center gap-2"
-        >
-          <img src="/logo-512.png" class="h-7 w-7" alt="ClassroomIO Logo" />
-          <span class="text-base font-semibold dark:text-white">ClassroomIO</span>
+        <a href="/" class="flex w-fit items-center gap-2">
+          <img src="/logo-512.png" class="h-7 w-7" alt="Alekows Academy logo" />
+          <span class="text-base font-semibold dark:text-white">Alekows Academy</span>
         </a>
         <p class="ui:text-muted-foreground mt-1 hidden text-sm md:block">{$t('onboarding.header.tagline')}</p>
       </header>

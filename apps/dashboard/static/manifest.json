@@ -1,8 +1,8 @@
 {
   "background_color": "#ffffff",
-  "theme_color": "#333333",
-  "name": "ClassroomIO",
-  "short_name": "ClassroomIO",
+  "theme_color": "#0e1a24",
+  "name": "Alekows Academy",
+  "short_name": "Alekows",
   "display": "minimal-ui",
   "start_url": "/",
   "icons": [

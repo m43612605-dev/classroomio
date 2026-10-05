@@ -54,7 +54,8 @@
     footerNextLabel={$t('public_course.footer_nav.next')}
     courseSlug={data.tree.course.slug}
     poweredByLabel={$t('public_course.powered_by.label')}
-    poweredByBrand="ClassroomIO"
+    poweredByBrand="Alekows Academy"
+    showPoweredBy={false}
     onItemClick={navigateTo}
     onPrev={() => navigateTo(prevItem)}
     onNext={() => navigateTo(nextItem)}
