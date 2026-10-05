@@ -27,7 +27,8 @@
     green: 'green',
     orange: 'orange',
     purple: 'purple',
-    blue: 'blue'
+    blue: 'blue',
+    alekows: 'alekows'
   };
 
   const updateThemeApi = debounce(async (theme: string) => {
@@ -157,6 +158,15 @@
           aria-label="Orange theme"
         >
           <div class="m-1 h-6 w-6 rounded-full bg-[#cc4902] md:h-6 md:w-6"></div>
+        </button>
+
+        <button
+          class="cursor-pointer rounded-full border-2 {$currentOrg.theme === themes.alekows &&
+            'border-[#d2b676]'} flex h-fit items-center justify-center"
+          onclick={handleChangeTheme(themes.alekows)}
+          aria-label="Alekows theme"
+        >
+          <div class="m-1 h-6 w-6 rounded-full border border-[#d2b676] bg-[#0e1a24] md:h-6 md:w-6"></div>
         </button>
 
         <button
