@@ -1,0 +1,37 @@
+name: Alekows build check
+
+on:
+  push:
+    branches:
+      - alekows
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.19.3
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Build API
+        run: pnpm --filter @cio/api^... build && pnpm --filter @cio/api build
+
+      - name: Build dashboard
+        run: |
+          test -f apps/dashboard/.env || cp apps/dashboard/.env.example apps/dashboard/.env
+          pnpm --filter @cio/dashboard^... build && pnpm --filter @cio/dashboard build
