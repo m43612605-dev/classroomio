@@ -180,7 +180,7 @@
 </script>
 
 <svelte:head>
-  <title>{courseApi.course?.title || 'ClassroomIO Course'}</title>
+  <title>{courseApi.course?.title || 'Alekows Academy'}</title>
 </svelte:head>
 
 {#if isCourseReady}

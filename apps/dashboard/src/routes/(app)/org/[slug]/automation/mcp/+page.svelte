@@ -11,7 +11,7 @@
   });
 </script>
 
-<svelte:head><title>{t.get('automation.tabs.mcp')} - ClassroomIO</title></svelte:head>
+<svelte:head><title>{t.get('automation.tabs.mcp')} - Alekows Academy</title></svelte:head>
 <Page.Header
   ><Page.HeaderContent
     ><Page.Title>{$t('automation.tabs.mcp')}</Page.Title><Page.Subtitle

@@ -23,7 +23,7 @@
 </script>
 
 <svelte:head>
-  <title>Settings - ClassroomIO</title>
+  <title>Settings - Alekows Academy</title>
 </svelte:head>
 
 <Page.Header>
