@@ -16,6 +16,7 @@
 </script>
 
 <div
+  data-landing-theme={theme}
   class={cn('ui:min-h-screen ui:bg-[var(--landing-bg)] ui:text-[var(--landing-fg)]', className)}
   style={themeStyle(theme)}
 >

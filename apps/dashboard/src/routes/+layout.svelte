@@ -76,7 +76,7 @@
       currentOrg.set(mergeAccountOrgFromServer(data.org));
     }
 
-    setTheme(data.org.theme || 'blue');
+    setTheme(data.org.theme ?? '');
 
     return () => {
       isCurrent = false;

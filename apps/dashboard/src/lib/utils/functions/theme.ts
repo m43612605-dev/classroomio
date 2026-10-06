@@ -2,7 +2,18 @@ import { darken, lighten } from 'color2k';
 
 import { tc } from '$lib/utils/functions/trycatch';
 
-export function setTheme(theme: string = '') {
+export const DEFAULT_THEME = 'alekows';
+
+const LEGACY_DEFAULT_THEME = 'blue';
+
+export function resolveTheme(theme: string = '') {
+  if (!theme || theme === LEGACY_DEFAULT_THEME) return DEFAULT_THEME;
+
+  return theme;
+}
+
+export function setTheme(requestedTheme: string = '') {
+  const theme = resolveTheme(requestedTheme);
   localStorage.setItem('theme', theme);
 
   if (theme?.includes('#')) {

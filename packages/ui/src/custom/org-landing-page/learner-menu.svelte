@@ -83,6 +83,7 @@
         role="dialog"
         aria-label={account.triggerLabel}
         class="ui:z-80 ui:w-[280px] ui:max-w-[calc(100vw-32px)] ui:bg-[var(--landing-card)] ui:border ui:border-[var(--landing-border)] ui:rounded-[var(--landing-radius-card)] ui:shadow-[var(--landing-shadow-card)] ui:p-1.5 ui:text-[var(--landing-fg)] ui:outline-none ui:transition-[opacity,transform] ui:duration-150"
+        data-landing-theme={theme}
         style={themeStyle(theme)}
       >
         <!-- Identity block (presentational, aria-hidden per FR-2) -->

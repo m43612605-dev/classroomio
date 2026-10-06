@@ -264,7 +264,7 @@ class AppInitApi extends BaseApi {
 
     const theme = get(currentOrg)?.theme;
 
-    setTheme(theme || 'blue');
+    setTheme(theme);
     this.syncedTenantKey = tenantSyncKey(params ?? { isOrgSite: false, orgSiteName: '' });
   }
 

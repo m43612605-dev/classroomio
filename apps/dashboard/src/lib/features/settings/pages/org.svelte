@@ -5,7 +5,7 @@
 
   import { t } from '$lib/utils/functions/translations';
   import { currentOrg } from '$lib/utils/store/org';
-  import { setTheme } from '$lib/utils/functions/theme';
+  import { resolveTheme, setTheme } from '$lib/utils/functions/theme';
   import { orgApi } from '$features/org/api/org.svelte';
 
   import { Input } from '@cio/ui/base/input';
@@ -27,7 +27,6 @@
     green: 'green',
     orange: 'orange',
     purple: 'purple',
-    blue: 'blue',
     alekows: 'alekows'
   };
 
@@ -89,6 +88,7 @@
     orgApi.errors = {};
   }
 
+  let activeTheme = $derived(resolveTheme($currentOrg.theme ?? ''));
   let isCustomTheme = $derived($currentOrg?.theme?.includes('#'));
   let hex = $derived($currentOrg.theme?.includes('#') ? $currentOrg.theme : undefined);
 </script>
@@ -125,12 +125,12 @@
     <Field.Field>
       <div class="flex items-center gap-5">
         <button
-          class="cursor-pointer rounded-full border-2 {$currentOrg.theme === themes.blue &&
-            'border-[#1d4ee2]'} flex h-fit items-center justify-center"
-          onclick={handleChangeTheme(themes.blue)}
-          aria-label="Default blue theme"
+          class="cursor-pointer rounded-full border-2 {activeTheme === themes.alekows &&
+            'border-[#d2b676]'} flex h-fit items-center justify-center"
+          onclick={handleChangeTheme(themes.alekows)}
+          aria-label="Alekows theme"
         >
-          <div class="m-1 h-6 w-6 rounded-full bg-[#1d4ee2] md:h-6 md:w-6"></div>
+          <div class="m-1 h-6 w-6 rounded-full border border-[#d2b676] bg-[#0e1a24] md:h-6 md:w-6"></div>
         </button>
 
         <button
@@ -160,14 +160,6 @@
           <div class="m-1 h-6 w-6 rounded-full bg-[#cc4902] md:h-6 md:w-6"></div>
         </button>
 
-        <button
-          class="cursor-pointer rounded-full border-2 {$currentOrg.theme === themes.alekows &&
-            'border-[#d2b676]'} flex h-fit items-center justify-center"
-          onclick={handleChangeTheme(themes.alekows)}
-          aria-label="Alekows theme"
-        >
-          <div class="m-1 h-6 w-6 rounded-full border border-[#d2b676] bg-[#0e1a24] md:h-6 md:w-6"></div>
-        </button>
 
         <button
           class="cursor-pointer rounded-full border-2 {$currentOrg.theme === themes.purple &&

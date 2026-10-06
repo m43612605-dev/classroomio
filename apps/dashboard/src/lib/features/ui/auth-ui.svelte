@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { page } from '$app/state';
+  import { env } from '$env/dynamic/public';
   import { resolve } from '$app/paths';
   import * as Avatar from '@cio/ui/base/avatar';
   import { t } from '$lib/utils/functions/translations';
@@ -74,6 +75,7 @@
     }
   }
 
+  const isGoogleAuthEnabled = env.PUBLIC_GOOGLE_AUTH_ENABLED === 'true';
   const authBackgroundUrl = $derived($currentOrg.customization.auth?.backgroundImage?.trim() ?? '');
   const showBlockFooter = $derived(page.data.isOrgSite === false);
 </script>
@@ -132,7 +134,7 @@
           {@render children?.()}
         </form>
 
-        {#if !showOnlyContent && !hideGoogleAuth}
+        {#if !showOnlyContent && !hideGoogleAuth && (isGoogleAuthEnabled || getPasswordAuthAlternative)}
           <div class="mt-6 flex flex-col gap-6">
             <div class="relative flex items-center justify-center">
               <Separator />
