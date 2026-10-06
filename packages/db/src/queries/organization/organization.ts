@@ -224,6 +224,41 @@ export async function getOrganizationMemberRoleId(organizationId: string, profil
 }
 
 /**
+ * The earliest-created organization that has an active admin, with that admin's profile.
+ * Self-hosted installs have a single organization, so this is the install's own organization.
+ */
+export async function getOldestOrganizationAdmin(dbClient: DbOrTxClient = db) {
+  try {
+    const [row] = await dbClient
+      .select({
+        organizationId: schema.organization.id,
+        organizationName: schema.organization.name,
+        profileId: schema.organizationmember.profileId
+      })
+      .from(schema.organizationmember)
+      .innerJoin(schema.organization, eq(schema.organization.id, schema.organizationmember.organizationId))
+      .where(
+        and(
+          eq(schema.organizationmember.roleId, ROLE.ADMIN),
+          eq(schema.organizationmember.status, 'ACTIVE'),
+          isNotNull(schema.organizationmember.profileId)
+        )
+      )
+      .orderBy(asc(schema.organization.createdAt), asc(schema.organizationmember.id))
+      .limit(1);
+
+    if (!row?.profileId) return null;
+
+    return { organizationId: row.organizationId, organizationName: row.organizationName, profileId: row.profileId };
+  } catch (error) {
+    console.error('getOldestOrganizationAdmin error:', error);
+    throw new Error(
+      `Failed to resolve organization admin: ${error instanceof Error ? error.message : 'Unknown error'}`
+    );
+  }
+}
+
+/**
  * Creates multiple organization members in a single query
  * @param data Array of organization member creation data
  * @returns Array of created members

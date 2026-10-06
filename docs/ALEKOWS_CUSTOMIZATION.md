@@ -24,3 +24,10 @@ This fork (branch `alekows`) reskins ClassroomIO as the Alekows academy. The ups
 
 - Railway project with services `api`, `dashboard`, Postgres and Redis. Both apps deploy from branch `alekows`, so the dashboard and API always come from the same commit.
 - CI (`.github/workflows/alekows-build.yml`) checks formatting and builds the API and dashboard on every push.
+
+## Starter courses
+
+- The Universal Credit course ships in Turkish, Bulgarian and English. The sources are in `docs/alekows-courses/universal-credit/*.md`, and every figure comes from GOV.UK.
+- `python3 docs/alekows-courses/generate.py` turns them into `apps/api/src/services/alekows/universal-credit-courses.ts`. Run prettier on that file afterwards.
+- When the API starts in self-hosted mode, `bootstrapAlekowsAcademy()` publishes each course into the organization through the course-import pipeline. It also renames the organization to "Alekows Academy" the first time. Each course is keyed by its import-draft idempotency key, so restarts never duplicate a course, and later edits or deletions made in the dashboard are never overwritten.
+- Lesson content is stored under the `en` and `tr` locales, because the lesson viewer shows only the reader's own locale. The database has no Bulgarian locale, so the Bulgarian course is a separate course.

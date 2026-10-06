@@ -3,6 +3,7 @@ import './instrument';
 
 import { API_PORT } from '@api/constants';
 import { app } from '@api/app';
+import { bootstrapAlekowsAcademy } from '@api/services/alekows/bootstrap';
 import { configureOpenAPI } from '@api/utils/openapi';
 import { connectRedis } from '@cio/core/utils/redis/redis';
 import { env } from '@cio/core/config/env';
@@ -25,6 +26,10 @@ async function startServer() {
   });
 
   serve({ fetch: app.fetch, port: API_PORT });
+
+  bootstrapAlekowsAcademy().catch((error) => {
+    console.error('Alekows academy bootstrap failed:', error);
+  });
 
   if (env.NODE_ENV !== 'production') {
     showRoutes(app, { colorize: true });
